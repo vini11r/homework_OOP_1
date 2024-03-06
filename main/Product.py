@@ -12,7 +12,7 @@ class Product:
 
     @classmethod
     def get_obj(cls, product_data):
-        """Возвращает список объектов класса Product"""
+        """Возвращает объект класса Product"""
         return cls(**product_data)
 
     @property
