@@ -1,6 +1,6 @@
 import pytest
-from main.Product import Product
-from main.Category import Category
+from homeworck_OOP_1.main.Product import Product
+from homeworck_OOP_1.main.Category import Category
 
 
 @pytest.fixture
@@ -9,8 +9,8 @@ def product():
 
 
 @pytest.fixture
-def category():
-    return Category('Смартфоны', 'Смартфоны, как', ['Samsung', 'Iphone', 'Xiaomi'])
+def category(product):
+    return Category('Смартфоны', 'Смартфоны, как', [product])
 
 
 def test_init_product(product):
@@ -23,6 +23,6 @@ def test_init_product(product):
 def test_init_category(category):
     assert category.name == 'Смартфоны'
     assert category.description == 'Смартфоны, как'
-    assert category.products == ['Samsung', 'Iphone', 'Xiaomi']
+    assert category.products == 'Samsung, 180000.0 руб. Остаток: 5 шт.\n'
     assert category.number_of_categories == 1
-    assert category.number_of_products == 3
+    assert category.number_of_products == 1
