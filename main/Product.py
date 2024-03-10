@@ -10,9 +10,18 @@ class Product:
         self._price = price
         self.quantity = quantity
 
+    def __str__(self):
+        return f"{self.name}, {self._price} руб. Остаток: {self.quantity} шт."
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}{self.name, self.description, self._price, self.quantity}"
+
+    def __add__(self, other):
+        return (self.price * self.quantity) + (other.quantity * other.price)
+
     @classmethod
     def get_obj(cls, product_data):
-        """Возвращает объект класса Product"""
+        """Возвращает экземпляр класса Product"""
         return cls(**product_data)
 
     @property
