@@ -1,4 +1,6 @@
 from homeworck_OOP_1.main.Product import Product
+from homeworck_OOP_1.main.Grass import Grass
+from homeworck_OOP_1.main.Smartphone import Smartphone
 
 
 class Category:
@@ -30,8 +32,11 @@ class Category:
 
     def add_product(self, obj_product):
         """Добавляет объект товара в список товаров"""
-        self.__products.append(obj_product)
-        Category.number_of_products += 1
+        if isinstance(obj_product, (Product, Grass, Smartphone)):
+            self.__products.append(obj_product)
+            Category.number_of_products += 1
+        else:
+            raise TypeError('Ошибка объекта продукта')
 
     @property
     def products(self):
