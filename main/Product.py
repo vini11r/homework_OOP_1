@@ -17,7 +17,10 @@ class Product:
         return f"{self.__class__.__name__}{self.name, self.description, self._price, self.quantity}"
 
     def __add__(self, other):
-        return (self.price * self.quantity) + (other.quantity * other.price)
+        if isinstance(other, type(self)):
+            return (self.price * self.quantity) + (other.quantity * other.price)
+        else:
+            raise TypeError('Можно складывать объекты только одного класса')
 
     @classmethod
     def get_obj(cls, product_data):
