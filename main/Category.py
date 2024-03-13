@@ -32,7 +32,7 @@ class Category:
 
     def add_product(self, obj_product):
         """Добавляет объект товара в список товаров"""
-        if isinstance(obj_product, (Product, Grass, Smartphone)):
+        if isinstance(obj_product, Product):
             self.__products.append(obj_product)
             Category.number_of_products += 1
         else:
