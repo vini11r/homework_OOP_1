@@ -6,8 +6,16 @@ class AbstractProduct(ABC):
     def __init__(self):
         pass
 
+    @abstractmethod
+    def get_obj(self, product_data):
+        """Возвращает экземпляр класса Product"""
+        pass
+
 
 class Mixin:
+    def __init__(self, *args, **kwargs):
+        print(repr(self))
+
     def __repr__(self):
         a = ', '.join([f"{key}={value}" for key, value in self.__dict__.items()])
         return f'{self.__class__.__name__} {a}'
@@ -24,7 +32,8 @@ class Product(Mixin, AbstractProduct):
         self.description = description
         self._price = price
         self.quantity = quantity
-        print(repr(self))
+        super().__init__()
+        # print(repr(self))
 
     def __str__(self):
         return f"{self.name}, {self._price} руб. Остаток: {self.quantity} шт."
