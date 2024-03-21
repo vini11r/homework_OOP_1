@@ -32,6 +32,8 @@ class Category:
 
     def add_product(self, obj_product):
         """Добавляет объект товара в список товаров"""
+        if obj_product.quantity == 0:
+            raise ValueError('Нельзя добавлять товар с нулевым количеством')
         if isinstance(obj_product, Product):
             self.__products.append(obj_product)
             Category.number_of_products += 1
@@ -46,3 +48,14 @@ class Category:
             # product = f"{i.name}, {i.price} руб. Остаток: {i.quantity} шт.\n"
             products += f"{str(i)}\n"
         return products
+
+    def middle_price(self):
+        price_summ = 0
+        for prod in self.__products:
+            price_summ += prod.price
+        try:
+            middle_price = price_summ / len(self.__products)
+            return middle_price
+        except ZeroDivisionError:
+            print('Еще нет товаров')
+            return 0
